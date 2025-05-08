@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Details | Sameer Farhan</title>
+  <link rel="stylesheet" href="/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Keep the loading spinner for project data fetching */
+    .loading-spinner {
+      border: 4px solid rgba(0, 0, 0, 0.1);
+      border-radius: 50%;
+      border-top: 4px solid var(--primary);
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin: 2rem auto;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    .project-full {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .project-header {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .project-emoji {
+      font-size: 3rem;
+    }
+    
+    .project-content {
+      line-height: 1.7;
+    }
+    
+    .project-actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+    
+    @media (max-width: 600px) {
+      .project-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+      
+      .project-actions {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav class="navbar">
+        <div class="logo">
+          <a href="/">Sameer Farhan</a>
+        </div>
+        <div class="nav-links" id="navLinks">
+          <a href="/">Home</a>
+          <a href="/projects.html">Projects</a>
+          <a href="/resume.html">Resume</a>
+          <a href="/feedback.html">Feedback</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <div id="projectDetail">
+        <div class="loading-spinner"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="social-links">
+        <a href="https://github.com/sameerfarhan" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
+          <img src="/GitHub.png" alt="GitHub" width="30" height="30"/>
+        </a>
+        <a href="https://linkedin.com/in/sameerfarhan" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+          <img src="/LinkedIn.png" alt="LinkedIn" width="30" height="30"/>
+        </a>
+        <a href="mailto:sameerfarhan1234@gmail.com" aria-label="Email">✉️</a>
+      </div>
+      <p class="copyright">&copy; 2025 Sameer Farhan. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    function setupMobileMenu() {
+      const hamburger = document.getElementById('hamburger');
+      const navLinks = document.getElementById('navLinks');
+      
+      if (hamburger && navLinks) {
+        hamburger.addEventListener('click', () => {
+          navLinks.classList.toggle('active');
+        });
+      }
+    }
+  
+    function formatDescription(text) {
+      if (!text) return '<p>No description available</p>';
+      return text.split('\n')
+        .filter(paragraph => paragraph.trim())
+        .map(paragraph => `<p>${paragraph}</p>`)
+        .join('');
+    }
+  
+    function renderProject(project) {
+      const container = document.getElementById('projectDetail');
+      
+      const fragment = document.createDocumentFragment();
+      const article = document.createElement('article');
+      article.className = 'project-full';
+      
+      article.innerHTML = `
+        <div class="project-header">
+          <span class="project-emoji">${project.emoji || '💻'}</span>
+          <div>
+            <h1>${project.title || 'Untitled Project'}</h1>
+            ${project.createdAt ? `<p class="project-meta">Created: ${new Date(project.createdAt).toLocaleDateString()}</p>` : ''}
+          </div>
+        </div>
+        <div class="project-content">
+          <div class="project-left">
+            <div class="project-tags">
+              ${project.tags?.length > 0 ? `
+                <h3>Technologies Used</h3>
+                <div class="tags-container">
+                  ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                </div>
+              ` : ''}
+            </div>
+            <div class="project-actions">
+              <a href="${project.link}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                View on GitHub
+              </a>
+              <a href="/projects.html" class="btn btn-accent">
+                ← Back to Projects
+              </a>
+            </div>
+          </div>
+          <div class="project-right">
+            ${formatDescription(project.description)}
+          </div>
+        </div>
+      `;
+      
+      fragment.appendChild(article);
+      container.innerHTML = '';
+      container.appendChild(fragment);
+    }
+  
+    function showError(message, details = '') {
+      const container = document.getElementById('projectDetail');
+      container.innerHTML = `
+        <div class="error-message">
+          <h2>Error Loading Project</h2>
+          <p>${message}</p>
+          ${details ? `<div class="error-details"><p>${details}</p></div>` : ''}
+          <div class="error-actions">
+            <a href="/projects.html" class="btn btn-primary">
+              Back to Projects
+            </a>
+            <button onclick="window.location.reload()" class="btn btn-accent">
+              Try Again
+            </button>
+          </div>
+        </div>
+      `;
+    }
+  
+    async function loadProject() {
+      const container = document.getElementById('projectDetail');
+  
+      try {
+        const url = new URL(window.location.href);
+        const projectId = url.searchParams.get('id');
+  
+        if (!projectId) {
+          throw new Error('Invalid project URL');
+        }
+  
+        container.innerHTML = '<div class="loading-spinner"></div>';
+  
+        const response = await fetch(`/api/projects/${projectId}`);
+  
+        if (!response.ok) {
+          const errorData = await response.json().catch(() => ({}));
+          throw new Error(errorData.message || 'Project not found');
+        }
+  
+        const project = await response.json();
+  
+        renderProject(project);
+  
+      } catch (error) {
+        console.error('Project load failed:', error);
+        showError(error.message || 'Failed to load project details');
+      }
+    }
+  
+    document.addEventListener('DOMContentLoaded', () => {
+      setupMobileMenu();
+      loadProject();
+    });
+  </script>
+  
+  
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Resume of Sameer Farhan - Cybersecurity Developer">
+  <title>Resume | Sameer Farhan</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav class="navbar">
+        <div class="logo">
+          <a href="/">Sameer Farhan</a>
+        </div>
+        <div class="hamburger" id="hamburger">☰</div>
+        <div class="nav-links" id="navLinks">
+          <a href="/">Home</a>
+          <a href="/projects.html">Projects</a>
+          <a href="/resume.html" class="active">Resume</a>
+          <a href="/feedback.html">Feedback</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <div class="resume-container">
+        <h1 class="section-title">My Resume</h1>
+        
+        <div class="resume-download card">
+          <h2>Download My Resume</h2>
+          <p>Get a comprehensive overview of my skills, experience, and education in PDF format.</p>
+          
+          <div class="download-btn">
+            <a href="/SameerFarhan_resume.pdf" class="btn btn-primary" download>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+              </svg>
+              Download Resume (PDF)
+            </a>
+          </div>
+        </div>
+        
+        <div class="resume-preview card">
+          <h2>Preview</h2>
+          <div class="resume-embed">
+            <!-- PDF embed or image preview would go here -->
+            <iframe src="SameerFarhan_resume.pdf" width="100%" height="490px"></iframe>
+          </div>
+        </div>
+        
+        <div class="resume-contact card">
+          <h2>Get In Touch</h2>
+          <p>Have questions about my experience or want to discuss opportunities?</p>
+          <a href="/feedback.html" class="btn btn-accent">Contact Me</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="social-links">
+        <a href="https://github.com/sameerfarhan" aria-label="GitHub">
+            <img src="/GitHub.png" alt="GitHub" width="30" height="30"/>
+          </a>
+          <a href="https://linkedin.com/in/sameerfarhan" aria-label="LinkedIn">
+            <img src="/LinkedIn.png"alt="LinkedIn" width="30" height="30"/>
+          </a>
+          <a href="mailto:sameerfarhan1234@gmail.com" aria-label="Email">✉️</a>
+          
+      </div>
+      <p class="copyright">&copy; 2025 Sameer Farhan. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    document.getElementById('hamburger').addEventListener('click', function() {
+      document.getElementById('navLinks').classList.toggle('active');
+    });
+  </script>
+</body>
+</html>

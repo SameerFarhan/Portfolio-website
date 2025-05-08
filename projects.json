@@ -1,0 +1,48 @@
+[
+  {
+    "id": "9876543210",
+    "title": "Another Project",
+    "description": "This is another project.",
+    "tags": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "link": "https://github.com/sameerfarhan/another-project",
+    "emoji": "📱"
+  },
+  {
+    "id": "1746529786940",
+    "title": "Income statement",
+    "description": "Purpose:\nThe Income Statement Program was developed with the primary goal of helping students who struggle with understanding accounting concepts, particularly in preparing and interpreting income statements. Many students face challenges when trying to connect various financial components—such as revenue, expenses, and net profit—and see how they contribute to the overall financial performance of a business. This program is designed to bridge that gap by offering an easy-to-use, interactive tool that automates the process of creating income statements. It provides students with a clear, visual understanding of how each financial element affects the final outcome.\n\nThrough this program, students can input their income and expense data, and the tool will automatically generate a well-organized income statement. This real-time feedback helps students see how their entries for income, expenses, and other related data contribute to the gross income, expenses, and net income. The application has already been beneficial to three classes of accounting students, giving them a practical, hands-on resource to enhance their understanding of financial accounting.\n\nThe purpose of this project extends beyond academic use; it equips students with essential skills in financial reporting, which are critical for future careers in accounting and finance. By automating the income statement creation, the program ensures that students can focus on understanding the relationships between different financial components rather than getting lost in the mechanics of manual calculations.\n\nOverview:\nThe Income Statement Program is a web application designed to help users generate income statements—financial reports summarizing revenues, expenses, and profits over a specified period. The program provides a user-friendly interface for entering financial data, and it automatically calculates and displays the income statement.\n\nTechnologies Used:\nBackend:\n\nPython (Flask): Flask is used to create the backend, handle routing, and process data from the frontend.\n\nJinja: Flask uses Jinja templates to dynamically render HTML with data passed from the backend.\n\nJSON: Data is handled in JSON format for easy transfer between the backend and frontend.\n\nFrontend:\n\nHTML/CSS: HTML structures the frontend, and CSS is used for styling to create an intuitive and clean interface.\n\nJavaScript: JavaScript adds interactivity, such as form validation and dynamic updates to the income statement.\n\nFeatures:\nIncome and Expense Data Entry:\n\nUsers input their income and expenses into designated fields, including sources of income, business expenses, and deductions.\n\nDynamic Calculation:\n\nOnce data is submitted, the backend calculates:\n\nGross Income: Total income from all sources.\n\nTotal Expenses: Sum of all expenses related to the business.\n\nNet Income: Gross income minus total expenses.\n\nThese calculations are automatically updated on the income statement.\n\nIncome Statement Generation:\n\nThe backend generates a formatted income statement that includes:\n\nRevenue/Income\n\nCost of Goods Sold (COGS)\n\nOperating Expenses\n\nNet Profit or Loss\n\nUser-Friendly Interface:\n\nA simple and clean interface allows users to easily enter their data and view the generated income statement.\n\nReal-time Results:\n\nUpon submission, the application dynamically updates and displays the income statement, showing a breakdown of income, expenses, and net income.\n\nResponsive Design:\n\nThe web application is responsive, ensuring it works across various devices, including desktops, tablets, and smartphones.\n\nWorkflow:\nUser Interaction:\n\nThe user accesses the web application and enters their income and expense details into a form.\n\nUpon entering the details, the user clicks the \"Generate Income Statement\" button.\n\nBackend Processing:\n\nThe Flask app processes the data, calculates the necessary financial figures (income, expenses, net profit/loss), and sends the result to the frontend.\n\nThe Jinja template renders the data in a user-friendly format.\n\nDisplay Results:\n\nThe income statement is displayed, showing detailed financial information, including income, expenses, and net profit/loss.\n\nThe frontend updates dynamically based on the backend calculations.\n\nUse Cases:\nPersonal Finance Tracking:\n\nIndividuals can use the tool to track their personal income and expenses, providing an overview of their financial performance over time.\n\nSmall Business Accounting:\n\nSmall business owners can use the tool to quickly generate income statements, helping them analyze their profitability.\n\nEducational Tool:\n\nThe program serves as an educational tool to assist students in understanding how to prepare and interpret income statements.",
+    "link": "https://github.com/SameerFarhan/Income_Statement",
+    "tags": [
+      "Python",
+      "Flask",
+      "Web development"
+    ],
+    "emoji": "💻"
+  },
+  {
+    "id": "1746529979011",
+    "title": "WeekPlan",
+    "description": "Purpose:\nThe primary purpose of the WeekPlan application is to help students and professionals manage their tasks and goals more efficiently. Over 200 students have used this tool to organize their weekly schedules, prioritize tasks, and track their progress, ultimately improving their productivity and reducing stress. WeekPlan serves as an easy-to-use platform that allows users to break down their goals into smaller, manageable tasks and maintain a clear overview of their week. By offering a structured approach to time management, the application enables users to stay on top of their responsibilities and improve their performance in both academic and personal settings.\n\nTechnologies Used:\n\nBackend: Python (Tkinter)\n\nFrontend: Tkinter is used to create a graphical user interface (GUI) where users can interact with the application and input their tasks and goals.\n\nLocal Storage: The application saves user data locally, allowing users to retrieve and continue managing their tasks even after restarting the application.\n\nFeatures:\n\nTask and Goal Management:\n\nUsers can add tasks and goals for each day of the week.\n\nEach task can be assigned a specific priority level (High, Medium, Low) to help users focus on the most important tasks first.\n\nUsers can mark tasks as complete, which helps track progress throughout the week.\n\nCalendar View:\n\nThe application provides a calendar view for users to visualize their tasks and goals for each day.\n\nUsers can see their weekly schedule at a glance, making it easier to plan and manage their time.\n\nPrioritization:\n\nUsers can set priorities for each task, ensuring that the most critical tasks are given appropriate attention.\n\nThis feature helps users avoid feeling overwhelmed by allowing them to focus on the most important tasks first.\n\nTask Completion Tracking:\n\nUsers can track their progress by marking tasks as completed.\n\nA progress bar or a simple checklist helps users stay motivated by showing how many tasks they’ve accomplished.\n\nSimple User Interface:\n\nThe application offers a clean, simple, and easy-to-navigate interface with intuitive options.\n\nUsers can add, edit, and delete tasks effortlessly with just a few clicks.\n\nWeekly Summary:\n\nAt the end of the week, users can view a summary of the tasks completed and those that are still pending.\n\nThis feature helps users reflect on their accomplishments and plan for the upcoming week.\n\nImpact and Purpose:\n\nWeekPlan was created to help students and professionals stay organized and improve productivity by providing a simple, interactive tool for managing tasks and goals. Over 200 students have benefited from using WeekPlan, gaining a clearer understanding of how to break down larger goals into smaller, more manageable tasks.\n\nThe application has been especially helpful for students juggling multiple assignments, study schedules, and extracurricular activities. By providing a structured way to manage their time, WeekPlan has helped these students stay on track with their academic work and personal goals, leading to improved performance and reduced stress.\n\nUse Cases:\n\nStudent Academic Management: Students can use WeekPlan to organize their study schedules, track homework, and set reminders for exams or project deadlines.\n\nTask Organization for Professionals: Professionals can use the app to manage work-related tasks, meetings, and personal goals, allowing them to stay organized and increase productivity.\n\nPersonal Goal Setting: Individuals can apply WeekPlan to track personal goals, whether related to fitness, hobbies, or self-improvement, and work towards achieving them efficiently.",
+    "link": "https://github.com/Bsisou/project-assessment-SameerFarhan",
+    "tags": [
+      "Task Management",
+      "Goal Setting",
+      "Productivity",
+      "Student Tool",
+      "Time Management"
+    ],
+    "emoji": "💻"
+  },
+  {
+    "id": "1746535177599",
+    "title": "testing",
+    "description": "..",
+    "link": "https://github.com/SameerFarhan/Income_Statement",
+    "tags": [],
+    "emoji": "💻"
+  }
+]

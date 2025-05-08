@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel | Sameer Farhan</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav class="navbar">
+        <div class="logo">
+          <a href="/">Sameer Farhan</a>
+        </div>
+        <div class="nav-links">
+          <a href="/admin.html" class="active">Admin Panel</a>
+          <a href="/index.html">View Site</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container admin-container">
+      <h1 class="section-title">Admin Panel</h1>
+      
+      <div class="admin-panels">
+        <section class="add-project card">
+          <h2>Add New Project</h2>
+          <form id="projectForm">
+            <div class="form-group">
+              <label for="title">Project Title</label>
+              <input type="text" id="title" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="description">Description</label>
+              <textarea id="description" class="form-control" required></textarea>
+            </div>
+            
+            <div class="form-group">
+              <label for="link">Project URL</label>
+              <input type="url" id="link" class="form-control" required placeholder="https://...">
+            </div>
+            
+            <div class="form-group">
+              <label for="tags">Tags (comma separated)</label>
+              <input type="text" id="tags" class="form-control" placeholder="security, web, app">
+            </div>
+            
+            <div class="form-group">
+              <label for="emoji">Emoji Icon</label>
+              <input type="text" id="emoji" class="form-control" maxlength="2" value="💻">
+            </div>
+            <input type="hidden" id="csrfToken" name="csrfToken">
+            <button type="submit" class="btn btn-primary">Add Project</button>
+            
+            <div id="formMessage" class="form-message" style="display: none;"></div>
+          </form>
+        </section>
+        
+        <section class="project-list card">
+          <h2>Manage Projects</h2>
+          <div id="projectsContainer">
+            <p>Loading projects...</p>
+          </div>
+        </section>
+      </div>
+    </div>
+
+  
+  </main>
+
+  <footer>
+    <div class="container">
+      <p class="copyright">Admin Panel &copy; 2025 Sameer Farhan</p>
+    </div>
+  </footer>
+  <script>
+    function loadProjects() {
+      fetch('/api/projects')
+        .then(res => res.json())
+        .then(projects => {
+          const container = document.getElementById('projectsContainer');
+          if (!projects.length) {
+            container.innerHTML = '<p>No projects yet.</p>';
+            return;
+          }
+  
+          container.innerHTML = `
+            <div class="project-list-items">
+              ${projects.map(project => `
+                <div class="project-list-item">
+                  <div>
+                    <h3>${project.emoji || '💻'} ${project.title}</h3>
+                    <p>${project.description.substring(0, 50)}...</p>
+                  </div>
+                  <div>
+                    <button class="btn" onclick="deleteProject('${project.id}')">Delete</button>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          `;
+        })
+        .catch(err => {
+          console.error('Failed to load projects:', err);
+          document.getElementById('projectsContainer').innerHTML = '<p>Error loading projects.</p>';
+        });
+    }
+  
+    function deleteProject(id) {
+      if (!confirm('Delete this project?')) return;
+      fetch(`/api/projects/${id}`, { method: 'DELETE' })
+        .then(() => loadProjects());
+    }
+  
+    document.getElementById('projectForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const formMessage = document.getElementById('formMessage');
+      const newProject = {
+        title: document.getElementById('title').value,
+        description: document.getElementById('description').value,
+        link: document.getElementById('link').value,
+        tags: document.getElementById('tags').value.split(',').map(t => t.trim()).filter(Boolean),
+        emoji: document.getElementById('emoji').value || '💻'
+      };
+  
+      fetch('/api/projects', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newProject)
+      }).then(res => res.json())
+        .then(() => {
+          formMessage.textContent = 'Project added successfully!';
+          formMessage.className = 'form-message success';
+          formMessage.style.display = 'block';
+          e.target.reset();
+          loadProjects();
+        }).catch(err => {
+          formMessage.textContent = 'Error: ' + err.message;
+          formMessage.className = 'form-message error';
+          formMessage.style.display = 'block';
+        });
+    });
+  
+    loadProjects();
+
+    // Fetch and display feedback on admin page
+  </script>
+  
+</body>
+</html>
